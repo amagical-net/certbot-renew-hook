@@ -1,0 +1,33 @@
+---
+config_file: /etc/letsencrypt/generated-config.yaml
+key_file: /etc/letsencrypt/.ssh/id_ecdsa
+ssh_user: root
+formats:
+  haproxy:
+    cmd_post: 'systemctl reload haproxy'
+    files:
+      certfile:
+        source:
+          - cert.pem
+          - chain.pem
+          - privkey.pem
+        ext: .pem
+        path: /etc/haproxy/certs/
+  apache:
+    cmd_post: 'service apache2 reload'
+    files:
+      certfile:
+        source:
+          - cert.pem
+        ext: .crt
+        path: /etc/ssl/certs/
+      keyfile:
+        source:
+          - privkey.pem
+        ext: .key
+        path: /etc/ssl/private/
+      chainfile:
+        source:
+          - chain.pem
+        ext: .pem
+        path: /etc/ssl/certs/

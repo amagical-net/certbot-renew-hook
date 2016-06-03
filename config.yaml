@@ -1,0 +1,14 @@
+---
+- server:
+    - haproxy1
+    - haproxy2
+  format: haproxy
+  cert:
+    - example.org
+    - example.cz
+
+- server:
+    - webserver
+  format: apache
+  cert:
+    - web.example.org
