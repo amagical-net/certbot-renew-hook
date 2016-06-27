@@ -52,7 +52,9 @@ $main_config = $main_config->[0];
 my $config = YAML::Tiny->read($main_config->{config_file}) or die "Cannot read config file!";
 {
     my %config = ();
-    %config = (%config, %$_) for (@$config);
+    foreach my $conf (@$config) {
+        push @{$config{(keys %$conf)[0]}}, values %$conf;
+    }
     $config = \%config;
 }
 
@@ -122,6 +124,6 @@ if (not defined $config->{$cert}) {
     print "Warning: Missing config for $cert, cannot install certificate!\n";
     exit 10;
 }
-# Run hook
-install $live_dir, $cert, $config->{$cert};
+# Run hooks
+install $live_dir, $cert, $_ for (@{$config->{$cert}});
 exit 0;
