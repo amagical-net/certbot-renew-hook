@@ -11,6 +11,11 @@ example.cz:
     - haproxy1
     - haproxy2
 ---
+example.org:
+  format: apache
+  server:
+    - webserver
+---
 web.example.org:
   format: apache
   server:

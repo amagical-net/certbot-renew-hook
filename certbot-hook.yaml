@@ -1,6 +1,6 @@
 ---
-config_file: /etc/letsencrypt/generated-config.yaml
-key_file: /etc/letsencrypt/.ssh/id_ecdsa
+config_file: generated-config.yaml
+key_file: .ssh/id_ecdsa
 ssh_user: root
 formats:
   haproxy:

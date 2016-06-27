@@ -11,4 +11,5 @@
     - webserver
   format: apache
   cert:
+    - example.org
     - web.example.org
